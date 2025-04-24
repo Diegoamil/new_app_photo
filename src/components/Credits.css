@@ -1,0 +1,327 @@
+.credits-container {
+  padding: 24px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: var(--font-family);
+}
+
+.credits-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.credits-header-left h2 {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #000;
+}
+
+.credits-header-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-button.ant-btn-primary {
+  background-color: #000;
+  border-color: #000;
+}
+
+.filter-button.ant-btn-primary:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.add-credits-button {
+  background-color: #000;
+  border-color: #000;
+}
+
+.add-credits-button:hover,
+.add-credits-button:focus {
+  background-color: #333;
+  border-color: #333;
+}
+
+.credits-summary {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.total-credits-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.total-credits-icon {
+  background-color: rgba(82, 196, 26, 0.1);
+  border: 1px solid rgba(82, 196, 26, 0.3);
+  color: #52c41a;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  position: relative;
+}
+
+.total-credits-icon .anticon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  transform: scale(0.8);
+}
+
+.total-credits-icon svg {
+  display: block;
+  margin: auto;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.total-credits-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-credits-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.total-credits-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #52c41a;
+}
+
+.credits-filters {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.credits-filters .ant-row {
+  align-items: flex-start;
+}
+
+.filter-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #000;
+  height: 22px;
+  display: block;
+}
+
+.credits-table {
+  margin-top: 24px;
+}
+
+.custom-credits-table {
+  width: 100%;
+}
+
+.custom-credits-table {
+  margin-top: 16px;
+}
+
+.custom-credits-table .ant-table-thead > tr > th {
+  background-color: #f5f5f5;
+  color: #000;
+  font-weight: 600;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.custom-credits-table .ant-table-tbody > tr:hover > td {
+  background-color: #f0f0f0;
+}
+
+.credit-id-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.credit-id-text {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+}
+
+.credit-points-cell,
+.credit-value-cell,
+.credit-payment-cell,
+.credit-date-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #333;
+  gap: 8px;
+}
+
+.credit-points-cell .anticon,
+.credit-payment-cell .anticon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Estilo para as tags de status */
+.ant-tag {
+  height: auto;
+  line-height: 1.5;
+  padding: 4px 8px;
+}
+
+.credit-points-text {
+  font-weight: 500;
+  color: #52c41a;
+}
+
+.credit-value-text {
+  font-weight: 500;
+}
+
+/* Removido estilo diferenciado da coluna de datas */
+
+.custom-credits-table .ant-table-column-sort {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Ajustes para as tags */
+.custom-credits-table .ant-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  gap: 4px;
+}
+
+.custom-credits-table .ant-space {
+  flex-wrap: wrap;
+}
+
+/* Ajustes para uniformidade dos inputs */
+.ant-picker,
+.ant-input,
+.ant-select .ant-select-selector {
+  height: 40px !important;
+  box-sizing: border-box;
+}
+
+.ant-picker-input > input,
+.ant-input,
+.ant-select-selection-item {
+  height: 38px !important;
+  line-height: 38px !important;
+}
+
+/* Ajustes específicos para o input de texto */
+.ant-input {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Ajuste para o placeholder do input */
+.ant-input::placeholder {
+  line-height: normal;
+  vertical-align: middle;
+}
+
+/* Ajuste para alinhar todos os inputs */
+.credits-filters .ant-col {
+  display: flex;
+  flex-direction: column;
+  height: 86px; /* Altura fixa para todos os filtros */
+}
+
+/* Icons styling */
+.anticon {
+  margin-right: 8px;
+}
+
+/* Paginação */
+.credits-pagination {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination-info {
+  color: #666;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-current {
+  margin: 0 8px;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .credits-container {
+    padding: 16px;
+  }
+  
+  .credits-filters {
+    padding: 16px;
+  }
+  
+  .credits-header-right {
+    flex-wrap: wrap;
+  }
+  
+  .add-credits-button {
+    order: -1;
+    margin-right: auto;
+  }
+  
+  .credits-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .pagination-controls {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}

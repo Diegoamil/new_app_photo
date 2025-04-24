@@ -1,0 +1,116 @@
+.users-container {
+  padding: 24px;
+  background-color: #fff;
+  min-height: 100%;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.users-header-left h2 {
+  margin-bottom: 0;
+}
+
+.users-header-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-input {
+  width: 300px;
+}
+
+.add-user-button {
+  background-color: #000;
+  border-color: #000;
+}
+
+.add-user-button:hover,
+.add-user-button:focus {
+  background-color: #333;
+  border-color: #333;
+}
+
+.custom-users-table {
+  margin-top: 16px;
+}
+
+.user-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details .user-name {
+  font-weight: 600;
+  color: #000 !important;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #666;
+}
+
+.role-tag {
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.user-credits-cell {
+  font-weight: 500;
+  color: #52c41a;
+}
+
+/* Estilos para o modal */
+.ant-modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .users-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .users-header-right {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  .add-user-button {
+    width: 100%;
+  }
+}

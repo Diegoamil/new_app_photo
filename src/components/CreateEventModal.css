@@ -1,0 +1,112 @@
+.create-event-modal .ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+  background-color: #fff !important;
+}
+
+.create-event-modal .ant-modal-header {
+  padding: 16px 24px;
+  background-color: #000 !important;
+  border-bottom: none;
+  margin: 0;
+}
+
+.create-event-modal .modal-title h4.ant-typography {
+  color: #fff;
+  margin: 0;
+}
+
+.create-event-modal .ant-modal-body {
+  padding: 0;
+  max-height: 70vh;
+  overflow-y: auto;
+  margin: 0;
+  background-color: #fff;
+}
+
+.create-event-modal .ant-divider {
+  margin: 16px 0;
+}
+
+.create-event-modal .ant-divider-inner-text {
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+}
+
+.create-event-modal .event-form {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 0;
+  margin: 0;
+}
+
+.create-event-modal .ant-form-item-label > label {
+  font-weight: 500;
+  color: #000;
+}
+
+.create-event-modal .ant-modal-footer {
+  background-color: #f5f5f5 !important;
+  padding: 16px 24px !important;
+  border-top: none !important;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.create-event-modal .submit-button {
+  background-color: #000;
+  border-color: #000;
+  font-weight: 500;
+}
+
+.create-event-modal .submit-button:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.create-event-modal .ant-upload-drag {
+  border: 2px dashed #d9d9d9;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: all 0.3s;
+}
+
+.create-event-modal .ant-upload-drag:hover {
+  border-color: #000;
+}
+
+.create-event-modal .ant-upload-drag-icon {
+  font-size: 48px;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.create-event-modal .ant-upload-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.create-event-modal .ant-upload-hint {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .create-event-modal .ant-modal-body {
+    padding: 0;
+    max-height: 80vh;
+  }
+  
+  .create-event-modal .ant-form-item {
+    margin-bottom: 16px;
+  }
+}
