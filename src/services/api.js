@@ -3,7 +3,7 @@ import axios from 'axios';
 // Determinar a URL da API com base no ambiente
 const API_URL = process.env.NODE_ENV === 'production' 
   ? '/api'  // URL relativa em produção
-  : 'http://localhost:5001/api'; // URL local em desenvolvimento
+  : 'http://localhost:80/api'; // URL local em desenvolvimento com porta 80
 
 // Criar uma instância do axios com configurações padrão
 const api = axios.create({

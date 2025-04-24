@@ -14,13 +14,13 @@ COPY . .
 # Definir variáveis de ambiente
 ENV NODE_ENV=production
 ENV CI=false
-ENV PORT=5001
+ENV PORT=80
 
 # Construir a aplicação React
 RUN npm run build
 
 # Expor a porta que o servidor usa
-EXPOSE 5001
+EXPOSE 80
 
 # Comando para iniciar o servidor
 CMD ["node", "server.js"]
