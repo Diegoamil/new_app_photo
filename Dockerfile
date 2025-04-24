@@ -23,4 +23,4 @@ RUN npm run build
 EXPOSE 5001
 
 # Comando para iniciar o servidor
-CMD ["npm", "run", "server"]
+CMD ["node", "server.js"]

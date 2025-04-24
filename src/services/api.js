@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Usar diretamente a URL do backend sem depender de variáveis de ambiente
-const API_URL = 'http://localhost:5001/api';
+// Determinar a URL da API com base no ambiente
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? '/api'  // URL relativa em produção
+  : 'http://localhost:5001/api'; // URL local em desenvolvimento
 
 // Criar uma instância do axios com configurações padrão
 const api = axios.create({

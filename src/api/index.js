@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const { testConnection } = require('../database');
 const userRoutes = require('./routes/userRoutes');
 
@@ -37,6 +38,19 @@ app.get('/api/health', (req, res) => {
 // Rotas da API
 app.use('/api/users', userRoutes);
 console.log('Rotas de usuários registradas em /api/users');
+
+// Em ambiente de produção, servir os arquivos estáticos do build do React
+if (process.env.NODE_ENV === 'production') {
+  // Servir arquivos estáticos da pasta build
+  app.use(express.static(path.join(__dirname, '../../build')));
+  
+  // Para qualquer rota não encontrada, retornar o index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  });
+  
+  console.log('Configurado para servir arquivos estáticos do frontend em produção');
+}
 
 // Middleware de tratamento de erros
 app.use((err, req, res, next) => {
