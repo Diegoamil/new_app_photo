@@ -27,12 +27,9 @@ const authService = {
     } catch (error) {
       if (error.response && error.response.data) {
         // Preservar o tipo de erro para tratamento específico no componente
-        throw {
-          ...error.response.data,
-          message: error.response.data.message || 'Erro ao conectar com o servidor'
-        };
+        throw new Error(error.response.data.message || 'Erro ao conectar com o servidor');
       }
-      throw { message: 'Erro ao conectar com o servidor' };
+      throw new Error('Erro ao conectar com o servidor');
     }
   },
 

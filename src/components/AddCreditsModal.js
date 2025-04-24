@@ -41,7 +41,7 @@ const AddCreditsModal = ({ visible, onCancel, onOk }) => {
     } else {
       setSelectedPackage(null);
     }
-  }, [selectedCredits]);
+  }, [selectedCredits, creditOptions]);
 
   const handleSubmit = () => {
     form.validateFields().then(values => {

@@ -10,7 +10,7 @@ const userService = {
       console.log('Token de autenticação:', token ? 'Presente' : 'Ausente');
       
       if (!token) {
-        throw { message: 'Usuário não autenticado. Faça login para continuar.' };
+        throw new Error('Usuário não autenticado. Faça login para continuar.');
       }
       
       // Configurar o cabeçalho de autorização
@@ -26,7 +26,7 @@ const userService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao obter usuários:', error);
-      throw error.response ? error.response.data : { message: error.message || 'Erro ao conectar com o servidor' };
+      throw new Error(error.response ? error.response.data.message : (error.message || 'Erro ao conectar com o servidor'));
     }
   },
   
@@ -37,7 +37,7 @@ const userService = {
       console.log('Token de autenticação:', token ? 'Presente' : 'Ausente');
       
       if (!token) {
-        throw { message: 'Usuário não autenticado. Faça login para continuar.' };
+        throw new Error('Usuário não autenticado. Faça login para continuar.');
       }
       
       const config = {
@@ -52,7 +52,7 @@ const userService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao obter usuário:', error);
-      throw error.response ? error.response.data : { message: error.message || 'Erro ao conectar com o servidor' };
+      throw new Error(error.response ? error.response.data.message : (error.message || 'Erro ao conectar com o servidor'));
     }
   },
   
@@ -63,7 +63,7 @@ const userService = {
       console.log('Token de autenticação:', token ? 'Presente' : 'Ausente');
       
       if (!token) {
-        throw { message: 'Usuário não autenticado. Faça login para continuar.' };
+        throw new Error('Usuário não autenticado. Faça login para continuar.');
       }
       
       const config = {
@@ -79,7 +79,7 @@ const userService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao atualizar usuário:', error);
-      throw error.response ? error.response.data : { message: error.message || 'Erro ao conectar com o servidor' };
+      throw new Error(error.response ? error.response.data.message : (error.message || 'Erro ao conectar com o servidor'));
     }
   },
   
@@ -90,7 +90,7 @@ const userService = {
       console.log('Token de autenticação:', token ? 'Presente' : 'Ausente');
       
       if (!token) {
-        throw { message: 'Usuário não autenticado. Faça login para continuar.' };
+        throw new Error('Usuário não autenticado. Faça login para continuar.');
       }
       
       const config = {
@@ -106,7 +106,7 @@ const userService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao ativar/desativar usuário:', error);
-      throw error.response ? error.response.data : { message: error.message || 'Erro ao conectar com o servidor' };
+      throw new Error(error.response ? error.response.data.message : (error.message || 'Erro ao conectar com o servidor'));
     }
   },
   
@@ -117,7 +117,7 @@ const userService = {
       console.log('Token de autenticação:', token ? 'Presente' : 'Ausente');
       
       if (!token) {
-        throw { message: 'Usuário não autenticado. Faça login para continuar.' };
+        throw new Error('Usuário não autenticado. Faça login para continuar.');
       }
       
       const config = {
@@ -133,7 +133,7 @@ const userService = {
       return response.data;
     } catch (error) {
       console.error('Erro ao alterar papel do usuário:', error);
-      throw error.response ? error.response.data : { message: error.message || 'Erro ao conectar com o servidor' };
+      throw new Error(error.response ? error.response.data.message : (error.message || 'Erro ao conectar com o servidor'));
     }
   }
 };

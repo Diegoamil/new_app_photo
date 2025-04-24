@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Badge, Typography, Dropdown, Avatar } from 'antd';
+import { Layout, Menu, Typography, Dropdown, Avatar } from 'antd';
 import { 
   HomeOutlined, 
   ShopOutlined, 
@@ -10,19 +10,16 @@ import {
   TrophyOutlined, 
   CreditCardOutlined, 
   DownloadOutlined, 
-  MessageOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  BellOutlined,
   LogoutOutlined,
-  SettingOutlined,
   WalletOutlined,
   CrownOutlined
 } from '@ant-design/icons';
 import './Dashboard.css'; 
 
-const { Header, Sider, Content } = Layout;
-const { Text } = Typography;
+const { Sider, Content } = Layout;
+const { Typography } = Typography;
 
 const getRandomColor = () => {
   const colors = [

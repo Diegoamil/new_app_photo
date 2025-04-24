@@ -337,7 +337,7 @@ const Register = ({ onRegister, onLogin }) => {
                   ]}
                 >
                   <Checkbox className="agreement-checkbox">
-                    Ao clicar em "Criar conta", você aceita os <a href="#">Termos de Uso</a> e confirma que leu nossa <a href="#">Política de Privacidade</a>. Eu Também autorizo a Foco Radical a enviar e-mails, incluindo por meios automatizados, para fins informativos e/ou de marketing. A autorização para o envio de mensagens de marketing não é uma condição para utilizar os serviços da Foco Radical. Compreende que pode cancelar estas comunicações no rodapé do e-mail recebido.
+                    Ao clicar em "Criar conta", você aceita os <button type="button" style={{ background: 'none', border: 'none', padding: 0, color: '#1890ff', cursor: 'pointer', textDecoration: 'underline' }}>Termos de Uso</button> e confirma que leu nossa <button type="button" style={{ background: 'none', border: 'none', padding: 0, color: '#1890ff', cursor: 'pointer', textDecoration: 'underline' }}>Política de Privacidade</button>. Eu Também autorizo a Foco Radical a enviar e-mails, incluindo por meios automatizados, para fins informativos e/ou de marketing. A autorização para o envio de mensagens de marketing não é uma condição para utilizar os serviços da Foco Radical. Compreende que pode cancelar estas comunicações no rodapé do e-mail recebido.
                   </Checkbox>
                 </Form.Item>
 

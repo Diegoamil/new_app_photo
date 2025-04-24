@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Typography, Button } from 'antd';
+import { Modal, Typography } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 import './SuccessModal.css';
 
