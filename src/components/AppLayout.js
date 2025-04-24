@@ -19,7 +19,7 @@ import {
 import './Dashboard.css'; 
 
 const { Sider, Content } = Layout;
-const { Typography } = Typography;
+const { Text } = Typography;
 
 const getRandomColor = () => {
   const colors = [
