@@ -80,9 +80,36 @@ const startServer = async () => {
       process.exit(1);
     }
     
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}`);
     });
+
+    // Lidar com sinais de encerramento graciosamente
+    process.on('SIGTERM', () => {
+      console.log('Recebido sinal SIGTERM, encerrando servidor graciosamente...');
+      server.close(() => {
+        console.log('Servidor encerrado.');
+        process.exit(0);
+      });
+    });
+
+    process.on('SIGINT', () => {
+      console.log('Recebido sinal SIGINT, encerrando servidor graciosamente...');
+      server.close(() => {
+        console.log('Servidor encerrado.');
+        process.exit(0);
+      });
+    });
+    
+    // Lidar com erros não tratados
+    process.on('uncaughtException', (error) => {
+      console.error('Erro não tratado:', error);
+      server.close(() => {
+        console.log('Servidor encerrado devido a erro não tratado.');
+        process.exit(1);
+      });
+    });
+    
   } catch (error) {
     console.error('Erro ao iniciar o servidor:', error);
     process.exit(1);
