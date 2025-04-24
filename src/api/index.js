@@ -42,11 +42,17 @@ console.log('Rotas de usuários registradas em /api/users');
 // Em ambiente de produção, servir os arquivos estáticos do build do React
 if (process.env.NODE_ENV === 'production') {
   // Servir arquivos estáticos da pasta build
-  app.use(express.static(path.join(__dirname, '../../build')));
+  app.use(express.static(path.resolve(__dirname, '../../build')));
   
   // Para qualquer rota não encontrada, retornar o index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  app.get('*', (req, res, next) => {
+    // Se a rota começar com /api, continue para o próximo middleware
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    
+    // Caso contrário, envie o index.html
+    res.sendFile(path.resolve(__dirname, '../../build/index.html'));
   });
   
   console.log('Configurado para servir arquivos estáticos do frontend em produção');
