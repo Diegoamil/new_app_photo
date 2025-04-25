@@ -22,6 +22,20 @@ app.use((req, res, next) => {
 // Configurar middlewares
 app.use(express.json());
 
+// Rota raiz para informações da API
+app.get('/', (req, res) => {
+  res.json({
+    name: 'WebFoto API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: [
+      { path: '/api/health', description: 'Verificar status da API' },
+      { path: '/api/test', description: 'Testar funcionamento da API' },
+      { path: '/api/users/login', description: 'Autenticar usuário (POST)' }
+    ]
+  });
+});
+
 // Rota de teste
 app.get('/api/test', (req, res) => {
   res.json({ message: 'API funcionando corretamente!' });
