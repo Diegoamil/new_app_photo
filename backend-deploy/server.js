@@ -5,12 +5,19 @@ const cors = require('cors');
 // Criar aplicação Express
 const app = express();
 
-// Configurar CORS para permitir requisições do frontend
-app.use(cors({
-  origin: ['https://webfoto-webfoto-apptest.jy7ldl.easypanel.host', 'http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// Middleware para adicionar cabeçalhos CORS manualmente
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  // Responder imediatamente às requisições OPTIONS
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
 // Configurar middlewares
 app.use(express.json());
@@ -27,6 +34,8 @@ app.get('/api/health', (req, res) => {
 
 // Rota de login simulada
 app.post('/api/users/login', (req, res) => {
+  console.log('Requisição de login recebida:', req.body);
+  
   const { email, password } = req.body;
   
   // Simulação simples de login
