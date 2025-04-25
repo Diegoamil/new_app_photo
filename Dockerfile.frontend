@@ -11,6 +11,9 @@ RUN npm ci
 # Copiar o restante dos arquivos do projeto
 COPY . .
 
+# Substituir o arquivo api.js pelo arquivo corrigido
+RUN cp src/services/api.fixed.js src/services/api.js
+
 # Definir variáveis de ambiente
 ENV CI=false
 ARG REACT_APP_API_URL
