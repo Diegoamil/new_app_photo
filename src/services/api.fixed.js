@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-// Usar a variável de ambiente REACT_APP_API_URL se disponível
-const API_URL = process.env.REACT_APP_API_URL 
-  ? `${process.env.REACT_APP_API_URL}/api`  // Adicionar /api ao final da URL
-  : process.env.NODE_ENV === 'production' 
-    ? '/api'  // URL relativa em produção (fallback)
-    : 'http://localhost:80/api'; // URL local em desenvolvimento
+// Em produção, usamos a URL relativa para que o proxy reverso do Nginx funcione
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? '/api'  // URL relativa em produção para usar com o proxy reverso
+  : 'http://localhost:80/api'; // URL local em desenvolvimento
 
 console.log('API URL configurada para:', API_URL);
 
