@@ -5,8 +5,14 @@ const cors = require('cors');
 // Criar aplicação Express
 const app = express();
 
+// Configurar CORS para permitir requisições do frontend
+app.use(cors({
+  origin: ['https://webfoto-webfoto-apptest.jy7ldl.easypanel.host', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // Configurar middlewares
-app.use(cors());
 app.use(express.json());
 
 // Rota de teste
@@ -17,6 +23,27 @@ app.get('/api/test', (req, res) => {
 // Rota de saúde para verificação
 app.get('/api/health', (req, res) => {
   res.json({ status: 'UP', timestamp: new Date().toISOString() });
+});
+
+// Rota de login simulada
+app.post('/api/users/login', (req, res) => {
+  const { email, password } = req.body;
+  
+  // Simulação simples de login
+  if (email && password) {
+    res.status(200).json({
+      message: 'Login realizado com sucesso.',
+      token: 'token-simulado-123456',
+      user: {
+        id: 1,
+        fullName: 'Usuário Teste',
+        email: email,
+        role: 'user'
+      }
+    });
+  } else {
+    res.status(401).json({ message: 'Credenciais inválidas' });
+  }
 });
 
 // Iniciar o servidor

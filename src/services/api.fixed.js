@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Usar a variável de ambiente REACT_APP_API_URL se disponível
 const API_URL = process.env.REACT_APP_API_URL 
-  ? process.env.REACT_APP_API_URL 
+  ? `${process.env.REACT_APP_API_URL}/api`  // Adicionar /api ao final da URL
   : process.env.NODE_ENV === 'production' 
     ? '/api'  // URL relativa em produção (fallback)
     : 'http://localhost:80/api'; // URL local em desenvolvimento
