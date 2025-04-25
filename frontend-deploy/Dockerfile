@@ -13,7 +13,8 @@ COPY . .
 
 # Definir variáveis de ambiente
 ENV CI=false
-ENV REACT_APP_API_URL=https://api-webfoto-apptest.jy7ldl.easypanel.host
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
 
 # Construir a aplicação React
 RUN npm run build
