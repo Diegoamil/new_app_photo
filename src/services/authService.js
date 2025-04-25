@@ -18,8 +18,8 @@ const authService = {
       // Adicionar log para depuração
       console.log('Enviando requisição de login para:', api.defaults.baseURL + '/users/login');
       
-      // Usar a rota correta com /api
-      const response = await api.post('/api/users/login', credentials);
+      // Usar a rota correta sem duplicar o /api
+      const response = await api.post('/users/login', credentials);
       
       // Armazenar token e dados do usuário no localStorage
       if (response.data.token) {
