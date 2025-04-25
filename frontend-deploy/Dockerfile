@@ -1,7 +1,8 @@
 FROM nginx:alpine
 
-# Copiar o arquivo HTML simplificado
+# Copiar os arquivos HTML
 COPY frontend-deploy/index.html /usr/share/nginx/html/index.html
+COPY frontend-deploy/test.html /usr/share/nginx/html/test.html
 
 # Configuração do Nginx para SPA e proxy reverso
 COPY frontend-deploy/nginx.conf /etc/nginx/conf.d/default.conf

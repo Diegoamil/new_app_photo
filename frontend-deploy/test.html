@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de API - WebFoto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #357ab8;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste de API - WebFoto</h1>
+    
+    <div class="card">
+        <h2>1. Teste de Conexão com o Backend</h2>
+        <button onclick="testConnection()">Testar Conexão</button>
+        <div id="connectionResult"></div>
+    </div>
+    
+    <div class="card">
+        <h2>2. Teste da Rota de Saúde (Health)</h2>
+        <button onclick="testHealth()">Testar /api/health</button>
+        <div id="healthResult"></div>
+    </div>
+    
+    <div class="card">
+        <h2>3. Teste da Rota de Login</h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" value="teste@teste.com" style="padding: 8px; margin: 5px 0 15px 0; width: 250px;">
+        <br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" value="senha123" style="padding: 8px; margin: 5px 0 15px 0; width: 250px;">
+        <br>
+        <button onclick="testLogin()">Testar Login (POST)</button>
+        <button onclick="testLoginOptions()">Testar OPTIONS</button>
+        <div id="loginResult"></div>
+    </div>
+
+    <script>
+        // URLs para teste
+        const localApiUrl = '/api';
+        const directApiUrl = 'https://api-webfoto-apptest.jy7ldl.easypanel.host/api';
+        
+        // Função para testar conexão básica
+        async function testConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            resultDiv.innerHTML = '<p>Testando conexão...</p>';
+            
+            try {
+                const response = await fetch(directApiUrl);
+                resultDiv.innerHTML = `<p class="success">Conexão estabelecida! Status: ${response.status}</p>`;
+                
+                try {
+                    const data = await response.json();
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } catch (e) {
+                    resultDiv.innerHTML += `<p>Não foi possível obter JSON da resposta.</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">Erro ao conectar: ${error.message}</p>`;
+            }
+        }
+        
+        // Função para testar a rota de saúde
+        async function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            resultDiv.innerHTML = '<p>Testando rota de saúde...</p>';
+            
+            // Testar via proxy (local)
+            try {
+                resultDiv.innerHTML += '<h3>Via Proxy Local:</h3>';
+                const localResponse = await fetch(`${localApiUrl}/health`);
+                
+                if (localResponse.ok) {
+                    const data = await localResponse.json();
+                    resultDiv.innerHTML += `<p class="success">Sucesso! Status: ${localResponse.status}</p>`;
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">Falha. Status: ${localResponse.status}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao conectar via proxy: ${error.message}</p>`;
+            }
+            
+            // Testar conexão direta
+            try {
+                resultDiv.innerHTML += '<h3>Conexão Direta:</h3>';
+                const directResponse = await fetch(`${directApiUrl}/health`);
+                
+                if (directResponse.ok) {
+                    const data = await directResponse.json();
+                    resultDiv.innerHTML += `<p class="success">Sucesso! Status: ${directResponse.status}</p>`;
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">Falha. Status: ${directResponse.status}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao conectar diretamente: ${error.message}</p>`;
+            }
+        }
+        
+        // Função para testar o login
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            resultDiv.innerHTML = '<p>Testando login...</p>';
+            
+            // Testar via proxy (local)
+            try {
+                resultDiv.innerHTML += '<h3>Via Proxy Local:</h3>';
+                const localResponse = await fetch(`${localApiUrl}/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                resultDiv.innerHTML += `<p>Status: ${localResponse.status}</p>`;
+                
+                try {
+                    const data = await localResponse.json();
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } catch (e) {
+                    resultDiv.innerHTML += `<p class="error">Não foi possível obter JSON da resposta.</p>`;
+                    resultDiv.innerHTML += `<p>Texto da resposta: ${await localResponse.text()}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao conectar via proxy: ${error.message}</p>`;
+            }
+            
+            // Testar conexão direta
+            try {
+                resultDiv.innerHTML += '<h3>Conexão Direta:</h3>';
+                const directResponse = await fetch(`${directApiUrl}/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                resultDiv.innerHTML += `<p>Status: ${directResponse.status}</p>`;
+                
+                try {
+                    const data = await directResponse.json();
+                    resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } catch (e) {
+                    resultDiv.innerHTML += `<p class="error">Não foi possível obter JSON da resposta.</p>`;
+                    resultDiv.innerHTML += `<p>Texto da resposta: ${await directResponse.text()}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao conectar diretamente: ${error.message}</p>`;
+            }
+        }
+        
+        // Função para testar requisição OPTIONS para o login
+        async function testLoginOptions() {
+            const resultDiv = document.getElementById('loginResult');
+            resultDiv.innerHTML = '<p>Testando requisição OPTIONS para login...</p>';
+            
+            // Testar via proxy (local)
+            try {
+                resultDiv.innerHTML += '<h3>Via Proxy Local:</h3>';
+                const localResponse = await fetch(`${localApiUrl}/users/login`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'content-type'
+                    }
+                });
+                
+                resultDiv.innerHTML += `<p>Status: ${localResponse.status}</p>`;
+                resultDiv.innerHTML += `<p>Headers:</p><pre>`;
+                
+                for (let [key, value] of localResponse.headers.entries()) {
+                    resultDiv.innerHTML += `${key}: ${value}\n`;
+                }
+                resultDiv.innerHTML += `</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao enviar OPTIONS via proxy: ${error.message}</p>`;
+            }
+            
+            // Testar conexão direta
+            try {
+                resultDiv.innerHTML += '<h3>Conexão Direta:</h3>';
+                const directResponse = await fetch(`${directApiUrl}/users/login`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'content-type'
+                    }
+                });
+                
+                resultDiv.innerHTML += `<p>Status: ${directResponse.status}</p>`;
+                resultDiv.innerHTML += `<p>Headers:</p><pre>`;
+                
+                for (let [key, value] of directResponse.headers.entries()) {
+                    resultDiv.innerHTML += `${key}: ${value}\n`;
+                }
+                resultDiv.innerHTML += `</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">Erro ao enviar OPTIONS diretamente: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
